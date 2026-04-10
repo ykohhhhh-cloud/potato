@@ -25,7 +25,7 @@ _INT_TYPES: Dict[str, str] = {
     "i16": "int16_t",
     "i32": "int32_t",
     "i64": "int64_t",
-    "i128": "__int128",
+    "i128": "__int128",  # GCC/Clang extension; not available on all compilers
 }
 
 _FLOAT_TYPES: Dict[str, str] = {
@@ -129,7 +129,7 @@ def split_comma(s: str) -> List[str]:
         if ch in "([{<":
             depth += 1
             cur.append(ch)
-        elif ch in ")]}>" :
+        elif ch in ")]}>":  
             depth -= 1
             cur.append(ch)
         elif ch == "," and depth == 0:
